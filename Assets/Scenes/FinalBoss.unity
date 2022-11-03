@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 1084952637}
   - component: {fileID: 1084952639}
   - component: {fileID: 1084952638}
+  - component: {fileID: 1084952640}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -354,7 +355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000041769144, y: 0.00068919087}
+  m_AnchoredPosition: {x: 0.000041769144, y: 0}
   m_SizeDelta: {x: 671.5612, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1084952638
@@ -377,7 +378,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TO BE CONTINUED...
+  m_text: "TO BE CONTINUED...\n\n\n\n\n\n\n\n\n\nDIRECTORS\nMarc Caball\xE9\nCarles
+    Cadenas\n\n\nDESIGN\nMarc Caball\xE9\nCarles Cadenas\n\n\nSOUNDTRACK\nMarc Caball\xE9\nCarles
+    Cadenas\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -454,6 +457,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084952636}
   m_CullTransparentMesh: 1
+--- !u!95 &1084952640
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084952636}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d714105bb3ba815459c500614cd91aa2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1345857399
 GameObject:
   m_ObjectHideFlags: 0
