@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovementScript : MonoBehaviour {
 	Rigidbody rb;
+	public float hp_min;
+	public float hp_max;
+	public Image barra;
 
 	[Tooltip("Current players speed")]
 	public float currentSpeed;
@@ -91,8 +96,15 @@ public class PlayerMovementScript : MonoBehaviour {
 	* Update loop calling other stuff
 	*/
 	void Update(){
-		
 
+		barra.fillAmount = hp_min / hp_max;
+
+		if (hp_min <= 0)
+		{
+			
+		}
+		//Ataque();
+		//Screen.lockCursor = true;
 		Jumping ();
 
 		Crouching();
@@ -138,6 +150,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		}
 
 	}
+
 	/*
 	* Raycasts down to check if we are grounded along the gorunded method() because if the
 	* floor is curvy it will go ON/OFF constatly this assures us if we are really grounded
@@ -287,10 +300,10 @@ public class PlayerMovementScript : MonoBehaviour {
 			|| Physics.Raycast (ray4, out hitInfo, 2f, ~ignoreLayer) || Physics.Raycast (ray5, out hitInfo, 2f, ~ignoreLayer) || Physics.Raycast (ray6, out hitInfo, 2f, ~ignoreLayer)
 			|| Physics.Raycast (ray7, out hitInfo, 2f, ~ignoreLayer) || Physics.Raycast (ray8, out hitInfo, 2f, ~ignoreLayer) || Physics.Raycast (ray9, out hitInfo, 2f, ~ignoreLayer)) {
 			//Debug.DrawRay (bulletSpawn.position, bulletSpawn.forward + (bulletSpawn.right*0.2f), Color.green, 0.0f);
-			if (hitInfo.transform.tag=="Dummie") {
+			if (hitInfo.transform.tag== "Boss") {
 				Transform _other = hitInfo.transform.root.transform;
-				if (_other.transform.tag == "Dummie") {
-					print ("hit a dummie");
+				if (_other.transform.tag == "Boss") {
+					print ("hit a Boss");
 				}
 				InstantiateBlood(hitInfo,false);
 			}

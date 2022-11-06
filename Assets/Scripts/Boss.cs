@@ -43,8 +43,15 @@ namespace SVS{
             public float hpMin;
             public float hpMax;
             public Image hpBar;
+            public AudioSource musica;
             public bool death;
         // Start is called before the first frame update
+
+        private void Awake()
+        {
+            lanzallamas = false;
+        }
+
         void Start()
         {
            ani = GetComponent<Animator>();
@@ -60,7 +67,8 @@ namespace SVS{
                 var lookPos = target.transform.position - transform.position;
                 lookPos.y = 0;
                 var rotation = Quaternion.LookRotation(lookPos);
-                //point.transform.LookAt(target.transform.position);
+                point.transform.LookAt(target.transform.position);
+                musica.enabled = true;
 
                 if(Vector3.Distance(transform.position, target.transform.position) > 1 && !isAttacking)
                 {
@@ -72,16 +80,16 @@ namespace SVS{
                             ani.SetBool("walk", true);
                             ani.SetBool("run", false);
 
-                            if(transform.rotation == rotation)
+                            if (transform.rotation == rotation)
                             {
                                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
                             }
 
                             ani.SetBool("attack", false);
                             crono += 1 * Time.deltaTime;
-                            if(crono > time_rutines)
+                            if (crono > time_rutines)
                             {
-                                rutine = Random.Range(0, 4);
+                                rutine = Random.Range(0, 5);
                                 crono = 0;
                             }
                             break;
@@ -92,41 +100,81 @@ namespace SVS{
                             ani.SetBool("walk", false);
                             ani.SetBool("run", true);
 
-                            if(transform.rotation == rotation)
+                            if (transform.rotation == rotation)
                             {
-                                transform.Translate(Vector3.forward * speed*2 * Time.deltaTime);
+                                transform.Translate(Vector3.forward * speed * 2 * Time.deltaTime);
                             }
 
                             ani.SetBool("attack", false);
-                            
+
                             break;
-                        
                         case 2:
-                        //jump attack
-                        if(fase == 2){
-                            jump_distance += 1 * Time.deltaTime;
-                            ani.SetBool("walk", false);
+                            //lanzallamas
+                            if (fase == 2)
+                            {
+                                ani.SetBool("walk", false);
                             ani.SetBool("run", false);
                             ani.SetBool("attack", true);
-                            ani.SetFloat("skills", 1);
-                            hit_select = 3;
-                            
-                            rank.GetComponent<CapsuleCollider>().enabled = false;
+                            ani.SetFloat("skills", 0.8f);
 
-                            if(direction_skill)
-                            {
-                                if(jump_distance < 1f)
-                                {
-                                    transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
-                                }
-                                transform.Translate(Vector3.forward * 8 * Time.deltaTime);
+                            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
+                            rank.GetComponent<CapsuleCollider>().enabled = false;
+                            
                             }
-                        }else{
-                            rutine = 0;
-                            crono = 0;
-                        }
+                            else
+                            {
+                                rutine = 0;
+                                crono = 0;
+                            }
 
                             break;
+
+                        case 3:
+                            //jump attack
+                            if (fase == 2)
+                            {
+                                jump_distance += 1 * Time.deltaTime;
+                                ani.SetBool("walk", false);
+                                ani.SetBool("run", false);
+                                ani.SetBool("attack", true);
+                                ani.SetFloat("skills", 0.6f);
+                                hit_select = 3;
+
+                                rank.GetComponent<CapsuleCollider>().enabled = false;
+
+                                if (direction_skill)
+                                {
+                                    if (jump_distance < 1f)
+                                    {
+                                        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
+                                    }
+                                    transform.Translate(Vector3.forward * 8 * Time.deltaTime);
+                                }
+                            }
+                            else
+                            {
+                                rutine = 0;
+                                crono = 0;
+                                
+                            }
+                            break;
+                           
+
+                            
+                        case 4:
+                            //fireball
+                            
+                                jump_distance += 1 * Time.deltaTime;
+                                ani.SetBool("walk", false);
+                                ani.SetBool("run", false);
+                                ani.SetBool("attack", true);
+                                ani.SetFloat("skills", 1);
+
+                                rank.GetComponent<CapsuleCollider>().enabled = false;
+                                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 0.5f);
+                            break;
+
+
                     }
                 }
             }
@@ -138,6 +186,7 @@ namespace SVS{
             ani.SetBool("attack", false);
             isAttacking = false;
             rank.GetComponent<CapsuleCollider>().enabled = true;
+            lanzallamas = false;
             jump_distance = 0;
             direction_skill = false;
         }
@@ -151,7 +200,7 @@ namespace SVS{
         {
             direction_skill = false;
         }
-
+        //melee
         public void ColliderWeaponTrue()
         {
             hit[hit_select].GetComponent<SphereCollider>().enabled = true;
@@ -162,6 +211,68 @@ namespace SVS{
             hit[hit_select].GetComponent<SphereCollider>().enabled = false;
         }
 
+        //lanzallamas
+        public GameObject GetBala()
+        {
+            for(int i=0; i<pool.Count; i++)
+            {
+                if(!pool[i].activeInHierarchy)
+                {
+                    pool[i].SetActive(true);
+                    return pool[i];
+                }
+            }
+            GameObject obj = Instantiate(fire, cabeza.transform.position, cabeza.transform.rotation) as GameObject;
+            pool.Add(obj);
+            return obj;
+        }
+
+        public void Lanzallamas_skill()
+        {
+            cronometro2 += 1 * Time.deltaTime;
+            if(cronometro2 > 0.1f)
+            {
+                GameObject obj = GetBala();
+                obj.transform.position = cabeza.transform.position;
+                obj.transform.rotation = cabeza.transform.rotation;
+                cronometro2 = 0;
+            }
+        }
+
+        public void Start_fire()
+        {
+            lanzallamas = true;
+        }
+
+        public void Stop_fire()
+        {
+            lanzallamas = false;
+        }
+
+        public GameObject GetFireball()
+        {
+            for (int i = 0; i < pool2.Count; i++)
+            {
+                if (!pool2[i].activeInHierarchy)
+                {
+                    pool2[i].SetActive(true);
+                    return pool2[i];
+                }
+            }
+            GameObject obj = Instantiate(fire_ball, point.transform.position, point.transform.rotation) as GameObject;
+            pool2.Add(obj);
+            return obj;
+        }
+
+        public void Fireball_skill()
+        {
+                GameObject obj = GetFireball();
+                obj.transform.position = point.transform.position;
+                obj.transform.rotation = point.transform.rotation;
+                cronometro2 = 0;
+            
+        }
+
         public void Alive()
         {
             if(hpMin < 500)
@@ -170,6 +281,11 @@ namespace SVS{
                 fase = 2;
             }
             boss_Behaviour();
+
+            if(lanzallamas)
+            {
+                Lanzallamas_skill();
+            }
         }
 
         // Update is called once per frame
@@ -185,7 +301,7 @@ namespace SVS{
                 {
                     ani.SetTrigger("dead");
                     death = true;
-                    
+                    musica.enabled = false;
                     teleport.SetActive(true);
                 }
             }

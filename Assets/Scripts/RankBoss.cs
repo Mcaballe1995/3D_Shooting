@@ -24,15 +24,27 @@ namespace SVS
                     
                     case 1:
                         //hit2
-                        ani.SetFloat("skills", 0.3333333f);
+                        ani.SetFloat("skills", 0.2f);
                         boss.hit_select = 1;
                         break;
 
                     case 2:
                         //jump hit
-                        ani.SetFloat("skills", 0.6666667f);
+                        ani.SetFloat("skills", 0.4f);
                         boss.hit_select = 2;
                         break;
+                    case 3:
+                        //fireball
+                        if(boss.fase == 1)
+                        {
+                            ani.SetFloat("skills", 1);
+                        }
+                        else
+                        {
+                            melee = 0;
+                        }
+                        break;
+
                 }
                 ani.SetBool("walk", false);
                 ani.SetBool("run", false);

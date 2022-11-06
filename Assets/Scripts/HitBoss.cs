@@ -12,7 +12,7 @@ public class HitBoss : MonoBehaviour
         {
             if(col.CompareTag("Player"))
             {
-                //AgentMovement.currentHealth  -= damage;
+                col.GetComponent<PlayerMovementScript>().hp_min -= damage;
             }
         }
         void Start()
