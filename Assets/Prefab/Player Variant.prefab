@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 173116, guid: c391f12a928274acab8576bb6030641d, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player Variant
       objectReference: {fileID: 0}
     - target: {fileID: 431846, guid: c391f12a928274acab8576bb6030641d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -129,3 +129,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c391f12a928274acab8576bb6030641d, type: 3}
+--- !u!1 &4796058822775373452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 173116, guid: c391f12a928274acab8576bb6030641d, type: 3}
+  m_PrefabInstance: {fileID: 4796058822775265968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-7611585519153784584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796058822775373452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0e0e6cc49fc534992d4a550caa00b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bala: {fileID: 3193910834656694815, guid: ca416138fc0da8d479a0cf11530a0641, type: 3}
+  numBalas: 0
+  cadencia: 0.1

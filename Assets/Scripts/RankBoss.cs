@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace SVS
-{
+
     public class RankBoss : MonoBehaviour
     {
         public Animator ani;
@@ -65,4 +64,3 @@ namespace SVS
             
         }
     }
-}

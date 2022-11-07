@@ -1151,8 +1151,8 @@ MonoBehaviour:
   point: {fileID: 1343762937}
   pool2: []
   fase: 1
-  hpMin: 1000
-  hpMax: 1000
+  hpMin: 2000
+  hpMax: 2000
   hpBar: {fileID: 2062309385}
   musica: {fileID: 107668210}
   death: 0
@@ -2212,7 +2212,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

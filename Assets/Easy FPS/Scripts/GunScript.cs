@@ -576,6 +576,10 @@ public class GunScript : MonoBehaviour {
 	* Fetching if any current animation is running.
 	* Setting the reload animation upon pressing R.
 	*/
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
 	void Animations(){
 
 		if(handsAnimator){

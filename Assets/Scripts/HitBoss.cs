@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace SVS{
+
 public class HitBoss : MonoBehaviour
     {
         public int damage;
@@ -26,4 +26,4 @@ public class HitBoss : MonoBehaviour
             
         }
     }
-}
+

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SVS{
+
     
     public class Boss : MonoBehaviour
     {
@@ -19,8 +19,8 @@ namespace SVS{
             public float speed;
             public GameObject[] hit;
             public int hit_select;
-            
-            public GameObject teleport;
+             
+             public GameObject teleport;
             
             //lanzallamas
             public bool lanzallamas;
@@ -282,10 +282,10 @@ namespace SVS{
             }
             boss_Behaviour();
 
-            if(lanzallamas)
+            /*if(lanzallamas)
             {
                 Lanzallamas_skill();
-            }
+            }*/
         }
 
         // Update is called once per frame
@@ -306,6 +306,17 @@ namespace SVS{
                 }
             }
         }
-    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Weapon"))
+             {
+            Debug.Log("hola");
+             hpMin -= 10;
+            Destroy(other.gameObject);
+             }
+        
+    }
 }
+
+

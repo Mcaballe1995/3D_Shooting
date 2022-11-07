@@ -2334,7 +2334,11 @@ MonoBehaviour:
   mls: {fileID: 0}
   walkingSpeed: 3
   runningSpeed: 5
+<<<<<<< Updated upstream
+  bulletsIHave: 100
+=======
   bulletsIHave: 9999
+>>>>>>> Stashed changes
   bulletsInTheGun: 80
   amountOfBulletsPerLoad: 80
   currentGunPosition: {x: 0, y: 0, z: 0}

@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+<<<<<<< Updated upstream
 using System.Collections.Generic;
 
 
 	public class BulletScript : MonoBehaviour {
+=======
+
+public class BulletScript : MonoBehaviour {
+>>>>>>> Stashed changes
 
 	[Tooltip("Furthest distance bullet will look for target")]
 	public float maxDistance = 1000000;
 	RaycastHit hit;
+<<<<<<< Updated upstream
 		private GameObject player;
 	
+=======
+>>>>>>> Stashed changes
 	[Tooltip("Prefab of wall damange hit. The object needs 'LevelPart' tag to create decal on it.")]
 	public GameObject decalHitWall;
 	[Tooltip("Decal will need to be sligtly infront of the wall so it doesnt cause rendeing problems so for best feel put from 0.01-0.1.")]
@@ -25,24 +33,51 @@ using System.Collections.Generic;
 	* If raycast finds somethig it will create a decal of corresponding tag.
 	*/
 	void Update () {
+<<<<<<< Updated upstream
 		
+=======
+
+>>>>>>> Stashed changes
 		if(Physics.Raycast(transform.position, transform.forward,out hit, maxDistance, ~ignoreLayer)){
 			if(decalHitWall){
 				if(hit.transform.tag == "LevelPart"){
 					Instantiate(decalHitWall, hit.point + hit.normal * floatInfrontOfWall, Quaternion.LookRotation(hit.normal));
 					Destroy(gameObject);
 				}
+<<<<<<< Updated upstream
 				if(hit.transform.tag == "Boss")
 					{
 					Instantiate(bloodEffect, hit.point, Quaternion.LookRotation(hit.normal));
-						
-						Destroy(gameObject);
+					
+				}
+				if (hit.transform.tag == "Zombie")
+				{
+=======
+				if(hit.transform.tag == "Dummie"){
+>>>>>>> Stashed changes
+					Instantiate(bloodEffect, hit.point, Quaternion.LookRotation(hit.normal));
+					Destroy(gameObject);
 				}
 			}		
 			Destroy(gameObject);
 		}
 		Destroy(gameObject, 0.1f);
 	}
-          
-    }
 
+<<<<<<< Updated upstream
+    
+
+	private void OnCollisionEnter(Collision collision)
+	{
+
+		if (collision.gameObject.TryGetComponent<ZombieEnemy>(out ZombieEnemy zombieComponent))
+		{
+			zombieComponent.TakeDamage(1);
+		}
+	}
+
+}
+
+=======
+}
+>>>>>>> Stashed changes

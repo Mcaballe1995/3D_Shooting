@@ -7,6 +7,11 @@ TagManager:
   - SecondCamera
   - BulletSpawn
   - Boss
+  - Weapon
+  - Zombie
+  - LevelPart
+  - Dummie
+  - ZonaDisparo
   layers:
   - Default
   - TransparentFX
